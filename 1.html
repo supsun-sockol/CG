@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<title>pathExample</title>
+		<meta charset='utf-8' />
+	</head>
+	<body>
+		<canvas id='example'>Обновите браузер</canvas>
+		<script>
+			setInterval( function () {
+				var d = new Date();
+				var s = d.getMilliseconds()/100/Math.PI*2;
+				var example = document.getElementById("example"),
+				    ctx     = example.getContext('2d');
+				example.height = 480;
+				example.width  = 640;
+				ctx.beginPath();
+				ctx.arc(100, 100, 80, 3/4 * Math.PI, 1/4 * Math.PI, true); //улыбка
+				ctx.fill();
+				ctx.moveTo(200, 100);
+				ctx.arc(100, 100, 100, 0, 2 * Math.PI); //голова
+				ctx.fillStyle = "#FFFF00";
+				ctx.fill();
+				ctx.stroke();
+				ctx.moveTo(20, 80);
+				//ctx.beginPath();
+				ctx.fillStyle = "#FF0000";
+				ctx.beginPath();
+				ctx.arc(50, 80, 30, Math.PI, 3*Math.PI); // левый глаз
+				ctx.fill();
+				ctx.moveTo(180, 80);
+				ctx.beginPath();
+				ctx.arc(150, 80, 30, 0, 2 * Math.PI);// правый глаз
+				ctx.fill();
+				ctx.fillStyle = "#000000";
+				ctx.beginPath();
+				ctx.moveTo(25, 80);
+				ctx.arc(50+Math.cos(s)*15, 80+Math.sin(s)*15, 10, Math.PI, 3*Math.PI); // левый зрачок
+				ctx.fill();
+				ctx.beginPath();
+				ctx.arc(150+Math.cos(s)*15, 80-Math.sin(s)*15, 10, 0, 2 * Math.PI);// правый зрачок
+				ctx.fill();
+
+				ctx.stroke();
+			}, 10);
+		</script>
+	</body>
+</html>
